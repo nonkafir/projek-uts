@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="5 wisata terbaik di Surabaya, Jawa Timur. Jelajahi tempat-tempat wisata populer seperti Tunjungan Romansa, Masjid Al-Akbar, Surabaya North Quay, dan lainnya.">
+  <title>5 Wisata Terbaik di Surabaya - Jawa Timur</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+  </style>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Poppins', 'sans-serif'],
+          },
+        }
+      }
+    };
+
+    const places = [
+      {
+        id: 'modal1',
+        title: 'Tunjungan Romansa',
+        shortDescription: 'Ikon bersejarah di Surabaya dengan bangunan kuno bergaya kolonial.',
+        description: 'Jalan Tunjungan, atau lebih dikenal dengan sebutan "Tunjungan Romansa," adalah salah satu ikon bersejarah di Surabaya, Jawa Timur. Jalan ini menawarkan suasana nostalgik dengan bangunan-bangunan kuno bergaya kolonial yang menghiasi sisi-sisinya, menciptakan perpaduan unik antara sejarah dan kehidupan modern. Tunjungan Romansa sering menjadi tempat wisatawan dan penduduk lokal untuk menikmati pemandangan malam yang indah, ditambah dengan acara atau festival yang digelar di sepanjang jalan, menambah kesan romantis dan artistik.',
+        imgSrc: 'https://kilasjatim.com/wp-content/uploads/2024/01/Lumii_20240120_135857477-1536x1157.jpg',
+        mapsLink: 'https://maps.app.goo.gl/QLUTFZBuPHon8Lo19',
+        rating: 4.5,
+        ticketLink: 'https://www.instagram.com/tunjunganromansa/?hl=en'
+      },
+      {
+        id: 'modal2',
+        title: 'Masjid Al-Akbar',
+        shortDescription: 'Salah satu masjid terbesar di Indonesia dengan arsitektur megah.',
+        description: 'Masjid Al-Akbar, juga dikenal sebagai Masjid Agung Surabaya, adalah salah satu masjid terbesar di Indonesia. Dengan arsitektur megah yang menggabungkan unsur tradisional dan modern, masjid ini memiliki kubah besar berwarna biru kehijauan.',
+        imgSrc: 'Surabaya/img/masjid agung.jpeg',
+        mapsLink: 'https://maps.app.goo.gl/qptXY8T8t8vzar6g6',
+        rating: 4.8,
+        ticketLink: 'https://www.masjidalakbar.or.id/'
+      },
+      {
+        id: 'modal3',
+        title: 'Surabaya North Quay',
+        shortDescription: 'Destinasi wisata modern dengan pemandangan laut yang indah.',
+        description: 'Surabaya North Quay adalah destinasi wisata modern yang terletak di kawasan pelabuhan Tanjung Perak, Surabaya. Tempat ini menawarkan pemandangan laut yang indah, lengkap dengan fasilitas restoran, kafe, dan area rekreasi.',
+        imgSrc: 'Surabaya/img/surabaya north quay.jpeg',
+        mapsLink: 'https://maps.app.goo.gl/YxCpQPzaFRoKVvKB7',
+        rating: 4.3,
+        ticketLink: 'https://www.instagram.com/snq_sunsetpoint/?hl=en'
+      },
+      {
+        id: 'modal4',
+        title: 'Alun-Alun Surabaya',
+        shortDescription: 'Ruang publik ikonik untuk bersantai dan berolahraga.',
+        description: 'Alun-Alun Surabaya adalah ruang publik ikonik yang berada di pusat kota Surabaya. Tempat ini menjadi destinasi favorit untuk bersantai, berolahraga, dan menikmati suasana kota.',
+        imgSrc: 'Surabaya/img/alun alun surabaya.jpeg',
+        mapsLink: 'https://maps.app.goo.gl/q1N96nfHQdYATtCP7',
+        rating: 4.7,
+        ticketLink: '#'
+      },
+      {
+        id: 'modal5',
+        title: 'Tugu Pahlawan',
+        shortDescription: 'Monumen bersejarah simbol perjuangan rakyat Surabaya.',
+        description: 'Tugu Pahlawan adalah monumen bersejarah yang menjadi simbol perjuangan dan keberanian rakyat Surabaya dalam pertempuran 10 November 1945 melawan penjajah.',
+        imgSrc: 'https://upload.wikimedia.org/wikipedia/commons/3/3e/Tugu_Pahlawan_Surabaya.jpg',
+        mapsLink: 'https://maps.app.goo.gl/kogK8sxCUL5ppD95A',
+        rating: 4.6,
+        ticketLink: 'https://tiketwisata.surabaya.go.id/destination/monumen-tugu-pahlawan'
+      }
+    ]
+
+    function openModal(id) {
+      const place = places.find(p => p.id === id);
+      if (place) {
+        document.getElementById('modalTitle').textContent = place.title;
+        document.getElementById('modalDescription').textContent = place.description;
+        document.getElementById('modalShortDescription').textContent = place.shortDescription;
+        document.getElementById('modalMapsLink').setAttribute('href', place.mapsLink);
+        document.getElementById('modalMapsLink').textContent = "Lihat di Peta"; // Teks untuk peta
+        document.getElementById('modalRating').textContent = `Rating: ${place.rating} ⭐`;
+        document.getElementById('modalTicketLink').setAttribute('href', place.ticketLink);
+        document.getElementById('modalTicketLink').textContent = "Masuk ke Website"; // Ubah teks ini sesuai fungsinya
+        document.getElementById('modalImage').setAttribute('src', place.imgSrc);
+        document.getElementById('modalImage').classList.remove('w-48', 'h-48');
+        document.getElementById('modalImage').classList.add('w-60', 'h-60'); // Menambah ukuran gambar modal
+        document.getElementById('modal').classList.remove('hidden');
+      }
+    }
+
+    function closeModal() {
+      document.getElementById('modal').classList.add('hidden');
+      document.getElementById('modalImage').classList.remove('w-60', 'h-60'); // Reset ukuran gambar modal
+      document.getElementById('modalImage').classList.add('w-48', 'h-48');
+    }
+  </script>
+</head>
+
+<body class="font-sans bg-gray-100">
+  <header class="bg-blue-600 text-white fixed w-full z-10">
+    <div class="container mx-auto px-4">
+      <nav class="flex items-center justify-between py-4">
+        <a href="index.html" class="text-2xl font-bold">EastJavaVentura</a>
+        <ul class="flex space-x-6">
+          <li><a href="index.html" class="hover:text-blue-200 transition-colors">Kembali ke Beranda</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="pt-16">
+    <section class="py-16 bg-white">
+      <div class="container mx-auto px-4">
+        <h1 class="text-4xl font-bold mb-8 text-center">5 Wisata Terbaik di Surabaya</h1>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <script>
+            places.forEach(place => {
+              document.write(`
+                <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                  <img src="${place.imgSrc}" alt="${place.title}" class="w-full h-48 object-cover">
+                  <div class="p-4">
+                    <h3 class="text-xl font-semibold mb-2">${place.title}</h3>
+                    <p class="text-gray-600">${place.shortDescription}</p>
+                    <div class="mt-4 flex justify-between items-center">
+                      <button onclick="openModal('${place.id}')" class="bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-700 transition-all">Lihat Detail</button>
+                    </div>
+                  </div>
+                </div>
+              `);
+            });
+          </script>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div id="modal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden">
+    <div class="bg-white p-6 rounded-lg shadow-lg flex w-4/5 max-w-3xl">
+      <img id="modalImage" src="#" alt="" class="w-48 h-48 rounded-lg mr-6 object-cover">
+      <div>
+        <h2 id="modalTitle" class="text-2xl font-bold mb-2"></h2>
+        <p id="modalShortDescription" class="text-gray-600 mb-4"></p>
+        <p id="modalDescription" class="text-gray-800"></p>
+        <p id="modalRating" class="text-gray-500 mt-4"></p>
+        <div class="mt-4 flex space-x-4">
+          <a id="modalMapsLink" href="#" target="_blank" class="bg-green-500 text-white py-2 px-4 rounded hover:bg-green-600 transition-all">Lihat di Peta</a>
+          <a id="modalTicketLink" href="#" target="_blank" class="bg-yellow-500 text-white py-2 px-4 rounded hover:bg-yellow-600 transition-all">Masuk ke Website</a>
+        </div>
+      </div>
+      <button onclick="closeModal()" class="ml-4 bg-red-500 text-white py-2 px-4 rounded hover:bg-red-600 transition-all">Tutup</button>
+    </div>
+  </div>
+</body>
+</html>

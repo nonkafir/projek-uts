@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wisata Jawa Timur</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Memperbaiki transisi slide dengan Tailwind */
+        .fade-enter-active, .fade-leave-active {
+            transition: opacity 0.5s ease-in-out;
+        }
+        .fade-enter, .fade-leave-to {
+            opacity: 0;
+        }
+        /* Animasi untuk memperkecil background image */
+        .bg-shrink {
+            background-size: 150%; /* Background besar awal */
+            transition: background-size 0.5s ease-in-out;
+        }
+
+        .bg-shrink.shrunk {
+            background-size: 100%; /* Mengecilkan background saat scroll */
+        }
+    </style>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    transitionProperty: {
+                        'height': 'height', 
+                        'spacing': 'margin, padding',
+                    },
+                    fontFamily: {
+                        sans: ['Poppins', 'sans-serif'],
+                    },
+                }
+            }
+        }
+
+        let slideIndex = 0;
+        function changeSlide(n) {
+            showSlide(slideIndex += n);
+        }
+
+        function showSlide(n) {
+            let slides = document.querySelectorAll(".slide");
+            if (n >= slides.length) { slideIndex = 0 }
+            if (n < 0) { slideIndex = slides.length - 1 }
+            slides.forEach((slide, i) => {
+                slide.classList.add('hidden');
+                slide.classList.remove('block');
+            });
+            slides[slideIndex].classList.remove('hidden');
+            slides[slideIndex].classList.add('block');
+        }
+
+        document.addEventListener("DOMContentLoaded", function () {
+            showSlide(slideIndex);
+            setInterval(() => changeSlide(1), 1500); // Auto slide every 5 seconds
+        });
+         // Menambahkan efek shrink pada background image saat scroll
+         document.addEventListener("scroll", function() {
+            const backgroundSection = document.getElementById("home");
+            if (window.scrollY > 100) {
+                backgroundSection.classList.add("shrunk");
+            } else {
+                backgroundSection.classList.remove("shrunk");
+            }
+        });
+    </script>
+</head>
+<body class="font-sans bg-gray-100">
+    <header class="bg-blue-600 text-white fixed w-full z-10 transition-all duration-300" id="navbar">
+        <div class="container mx-auto px-4">
+            <nav class="flex items-center justify-between py-4">
+                <a href="#" class="text-2xl font-bold">
+                    <img src="homepage\img\motion logo .gif" alt="Motion Logo" class="w-16 h-16"> <!-- Menyesuaikan ukuran logo -->
+                </a>
+                <ul class="flex space-x-6 relative">
+                    <li><a href="#home" class="hover:text-blue-200 transition-colors">Home</a></li>
+                    <li class="relative group">
+                        <a href="#destination" class="hover:text-blue-200 transition-colors">Destination</a>
+                        <ul class="absolute hidden group-hover:block bg-white text-black mt-2 rounded-lg shadow-lg w-40">
+                            <li><a href="surabaya-home.html" class="block px-4 py-2 hover:bg-blue-500 hover:text-white transition-colors">Surabaya</a></li>
+                            <li><a href="malang-home.html" class="block px-4 py-2 hover:bg-blue-500 hover:text-white transition-colors">Malang</a></li>
+                            <li><a href="batu-home.html" class="block px-4 py-2 hover:bg-blue-500 hover:text-white transition-colors">Batu</a></li>
+                            <li><a href="banyuwangi-home.html" class="block px-4 py-2 hover:bg-blue-500 hover:text-white transition-colors">Banyuwangi</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#contact" class="hover:text-blue-200 transition-colors">Our Contact</a></li>
+                </ul>
+            </nav> 
+        </div>
+    </header>
+
+    <main class="pt-16"> 
+        <section id="home" class="min-h-screen flex items-center justify-center bg-cover bg-center bg-fixed bg-shrink relative" style="background-image: url('homepage/img/bg main section.jpg');">
+            <div class="text-center mb-8">
+                <h1 class="text-5xl font-bold mb-4">Selamat Datang di Wisata Jawa Timur</h1>
+                <p class="text-xl">Jelajahi keindahan alam dan budaya di Jawa Timur!</p>
+            </div>
+        </section>
+
+            <!-- Slideshow untuk Navigasi Antar Kota -->
+            <div class="relative w-full max-w-4xl mx-auto">
+                <!-- Slide 1 -->
+                <div class="slide hidden">
+                    <a href="surabaya-home.html">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/3/3e/Tugu_Pahlawan_Surabaya.jpg" alt="Surabaya" class="w-full h-96 object-cover rounded-lg shadow-lg">
+                        <div class="text-blue text-center mt-2 text-xl font-semibold">Surabaya</div>
+                    </a>
+                    <button class="mt-4 bg-blue-600 text-white py-2 px-4 rounded transition ease-in-out duration-300 hover:bg-blue-700 hover:-translate-y-1 hover:scale-110">5 Wisata Terbaik Surabaya</button>
+                </div>
+
+                <!-- Slide 2 -->
+                <div class="slide hidden">
+                    <a href="malang-home.html">
+                        <img src="https://e-dazibao.com/wp-content/uploads/2019/11/kampung-warna-warni.jpg" alt="Malang" class="w-full h-96 object-cover rounded-lg shadow-lg">
+                        <div class="text-blue text-center mt-2 text-xl font-semibold">Malang</div>
+                    </a>
+                    <button class="mt-4 bg-blue-600 text-white py-2 px-4 rounded transition ease-in-out duration-300 hover:bg-blue-700 hover:-translate-y-1 hover:scale-110">5 Wisata Terbaik Malang</button>
+                </div>
+
+                <!-- Slide 3 -->
+                <div class="slide hidden">
+                    <a href="batu-home.html">
+                        <img src="Batu\img\preview kota batu.jpeg" alt="Batu" class="w-full h-96 object-cover rounded-lg shadow-lg">
+                        <div class="text-blue text-center mt-2 text-xl font-semibold">Batu</div>
+                    </a>
+                    <button class="mt-4 bg-blue-600 text-white py-2 px-4 rounded transition ease-in-out duration-300 hover:bg-blue-700 hover:-translate-y-1 hover:scale-110">5 Wisata Terbaik Batu</button>
+                </div>
+
+                <!-- Slide 4 -->
+                <div class="slide hidden">
+                    <a href="banyuwangi-home.html">
+                        <img src="https://lh5.googleusercontent.com/p/AF1QipNJ9mp36c0Vlv5560mWD762SHvfDCo8yJkvK6V7=w540-h312-n-k-no" alt="Banyuwangi" class="w-full h-96 object-cover rounded-lg shadow-lg">
+                        <div class="text-blue text-center mt-2 text-xl font-semibold">Banyuwangi</div>
+                    </a>
+                    <button class="mt-4 bg-blue-600 text-white py-2 px-4 rounded transition ease-in-out duration-300 hover:bg-blue-700 hover:-translate-y-1 hover:scale-110">5 Wisata Terbaik Banyuwangi</button>
+                </div>
+
+                <!-- Kontrol Manual -->
+                <button class="absolute top-1/2 left-0 transform -translate-y-1/2 bg-blue-600 text-white p-3 rounded-full focus:outline-none hover:bg-blue-700 transition duration-300" onclick="changeSlide(-1)">&#10094;</button>
+                <button class="absolute top-1/2 right-0 transform -translate-y-1/2 bg-blue-600 text-white p-3 rounded-full focus:outline-none hover:bg-blue-700 transition duration-300" onclick="changeSlide(1)">&#10095;</button>
+            </div>
+        </section>
+
+        <section id="destination" class="py-16 bg-white">
+            <div class="container mx-auto px-4">
+                <h2 class="text-3xl font-bold mb-8 text-center">Main Destination</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <div class="bg-gray-100 p-4 rounded-lg shadow-lg text-center">
+                        <a href="surabaya-home.html">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/3/3e/Tugu_Pahlawan_Surabaya.jpg" alt="Surabaya" class="w-full h-96 object-cover rounded-lg shadow-lg mb-4">
+                        </a>
+                        <h3 class="text-xl font-semibold mb-2">Surabaya</h3>
+                        <button class="bg-blue-600 text-white py-2 px-4 rounded transition ease-in-out duration-300 hover:bg-blue-700 hover:-translate-y-1 hover:scale-110" onclick="window.location.href='surabaya-home.html'">Explore Surabaya</button>
+                    </div>
+                    <!-- Malang -->
+                    <div class="bg-gray-100 p-4 rounded-lg shadow-lg text-center">
+                        <a href="malang-home.html">
+                            <img src="https://encrypted-tbn0.gstatic.com/licensed-image?q=tbn:ANd9GcSjxARvYFsCvWGGbRrT8NyG-X1DjOpcah08oUyw6IN-ZoLHYlC2UIY6dWNBrG5tO-aNQq8mtaiSsVBND6yFpuO03VXmqFRBgErGSCQRIQ" alt="Surabaya" class="w-full h-96 object-cover rounded-lg shadow-lg mb-4">
+                        </a>
+                        <h3 class="text-xl font-semibold mb-2">Malang</h3>
+                        <button class="bg-blue-600 text-white py-2 px-4 rounded transition ease-in-out duration-300 hover:bg-blue-700 hover:-translate-y-1 hover:scale-110" onclick="window.location.href='malang-home.html'">Explore Malang</button>
+                    </div>
+
+                    <!-- Batu -->
+                    <div class="bg-gray-100 p-4 rounded-lg shadow-lg text-center">
+                        <a href="batu-home.html">
+                            <img src="Batu\img\preview kota batu.jpeg" alt="Batu" class="w-full h-96 object-cover rounded-lg shadow-lg mb-4">
+                        </a>
+                        <h3 class="text-xl font-semibold mb-2">Batu</h3>
+                        <button class="bg-blue-600 text-white py-2 px-4 rounded transition ease-in-out duration-300 hover:bg-blue-700 hover:-translate-y-1 hover:scale-110" onclick="window.location.href='batu-home.html'">Explore Batu</button>
+                    </div>
+
+                    <!-- Banyuwangi -->         
+                    <div class="bg-gray-100 p-4 rounded-lg shadow-lg text-center">
+                        <a href="banyuwangi-home.html">
+                            <img src="https://lh5.googleusercontent.com/p/AF1QipNJ9mp36c0Vlv5560mWD762SHvfDCo8yJkvK6V7=w540-h312-n-k-no" alt="Banyuwangi" class="w-full h-96 object-cover rounded-lg shadow-lg mb-4">
+                        </a>
+                        <h3 class="text-xl font-semibold mb-2">Banyuwangi</h3>
+                        <button class="bg-blue-600 text-white py-2 px-4 rounded transition ease-in-out duration-300 hover:bg-blue-700 hover:-translate-y-1 hover:scale-110" onclick="window.location.href='banyuwangi-home.html'">Explore Banyuwangi</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <section id="contact" class="py-16 bg-cover bg-center" style="background-image: url('homepage/img/bg homepage 1.jpg');">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold mb-8 text-center text-white">Our Contact</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Alamat -->
+                <div class="text-center text-white">
+                    <h3 class="text-xl font-semibold mb-4">Our Office</h3>
+                    <p class="mb-2">Jl. Diponegoro No. 123</p>
+                    <p class="mb-2">Surabaya, Jawa Timur, Indonesia</p>
+                    <p class="mb-2">60123</p>
+                </div>
+    
+                <!-- Email -->
+                <div class="text-center text-white">
+                    <h3 class="text-xl font-semibold mb-4">Email Us</h3>
+                    <p class="mb-2">info@jatimtravel.com</p>
+                    <p class="mb-2">support@jatimtravel.com</p>
+                </div>
+    
+                <!-- Media Sosial -->
+                <div class="text-center text-white">
+                    <h3 class="text-xl font-semibold mb-4">Follow Us</h3>
+                    <div class="flex justify-center space-x-4">
+                        <a href="#" class="hover:text-blue-300 transition-colors">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 5.636A9 9 0 118.636 18.364 9 9 0 0118.364 5.636z" />
+                            </svg>
+                        </a>
+                        <a href="#" class="hover:text-blue-300 transition-colors">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 2.25c2.136 0 3.909 1.773 3.909 3.909 0 2.136-1.773 3.909-3.909 3.909a3.909 3.909 0 110-7.818z" />
+                            </svg>
+                        </a>
+                        <a href="#" class="hover:text-blue-300 transition-colors">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7.5 21.75h9M3.75 12h16.5M8.25 5.25h7.5" />
+                            </svg>
+                        </a>
+                    </div>
+                </div> 
+            </div>
+        </div>
+    </section>
+    <footer class="bg-blue-600 text-white py-4">
+        <div class="container mx-auto px-4 text-center">
+          <p>&copy; 2023 Jatim Travel. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>

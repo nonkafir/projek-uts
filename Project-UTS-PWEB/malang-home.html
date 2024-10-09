@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="5 wisata terbaik di Malang, Jawa Timur. Jelajahi tempat-tempat wisata populer seperti Alun Alun Malang, Jatim Park, Museum Angkut, dan lainnya.">
+  <title>5 Wisata Terbaik di Malang - Jawa Timur</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+  </style>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Poppins', 'sans-serif'],
+          },
+        }
+      }
+    }
+
+    const placesMalang = [
+      {
+        id: 'modal1',
+        title: 'Alun-Alun Kota Malang',
+        shortDescription: 'Pusat keramaian dengan taman hijau.',
+        description: 'Alun-Alun Kota Malang adalah pusat keramaian dan tempat rekreasi populer. Taman hijau luas, air mancur, dan berbagai fasilitas olahraga menjadikannya tempat ideal untuk bersantai.',
+        imgSrc: 'Malang/img/alun alun kota malang.jpeg',
+        location: 'Jl. Merdeka Selatan, Kota Malang, Jawa Timur',
+        mapsLink: 'https://maps.app.goo.gl/FfN5njiGrVpf8noh8',
+        rating: '4.5',
+        ticketLink: 'https://malangkota.go.id/tag/alun-alun-kota-malang/'
+      },
+      {
+        id: 'modal2',
+        title: 'Jatim Park 1',
+        shortDescription: 'Taman hiburan untuk keluarga.',
+        description: 'Jatim Park 1 adalah taman hiburan dan edukasi dengan berbagai wahana permainan serta museum. Tempat ini cocok untuk wisata keluarga dengan atraksi seperti taman dinosaurus dan wahana sains.',
+        imgSrc: 'Malang/img/jatim park 1.jpeg',
+        location: 'Jl. Kartika No.2, Kota Batu, Jawa Timur',
+        mapsLink: 'https://maps.app.goo.gl/Tyn8YZhpMMiqHpwK7',
+        rating: '4.3',
+        ticketLink: 'https://www.jtp.id/'
+      },
+      {
+        id: 'modal3',
+        title: 'Museum Angkut',
+        shortDescription: 'Museum kendaraan dari berbagai era.',
+        description: 'Museum Angkut menampilkan berbagai jenis kendaraan dari masa ke masa. Museum ini memiliki area foto tematik dengan replika kota-kota terkenal di dunia.',
+        imgSrc: 'Malang/img/museum angkut.jpeg',
+        location: 'Jl. Terusan Sultan Agung No.2, Kota Batu, Jawa Timur',
+        mapsLink: 'https://maps.app.goo.gl/bJLWX2qkJqVtRANT8',
+        rating: '4.6',
+        ticketLink: 'https://jtp.id/museumangkut/mobile/index.html'
+      },
+      {
+        id: 'modal4',
+        title: 'Kampung Warna-Warni Jodipan',
+        shortDescription: 'Destinasi penuh warna dengan mural.',
+        description: 'Kampung Warna-Warni Jodipan adalah destinasi penuh warna dengan mural dan spot foto menarik. Dulunya kampung kumuh, kini menjadi ikon wisata yang ceria dan unik.',
+        imgSrc: 'Malang/img/kampung warna warni jodipan.jpeg',
+        location: 'Jl. Juanda, Kota Malang, Jawa Timur',
+        mapsLink: 'https://maps.app.goo.gl/mwVgQr6jqovbkqoD6',
+        rating: '4.4',
+        ticketLink: 'https://bakesbangpol.malangkota.go.id/tag/kampung-warna-warni/'
+      },
+      {
+        id: 'modal5',
+        title: 'Coban Rondo',
+        shortDescription: 'Air terjun dengan pemandangan alam.',
+        description: 'Coban Rondo adalah air terjun populer di Malang yang menawarkan pemandangan alam asri. Terdapat area camping dan taman labirin, cocok untuk rekreasi keluarga.',
+        imgSrc: 'Malang/img/coban rondo.jpeg',
+        location: 'Jl. Coban Rondo, Kab. Malang, Jawa Timur',
+        mapsLink: 'https://maps.app.goo.gl/4Enfuy47J8tBZuFh7',
+        rating: '4.7',
+        ticketLink: 'https://www.instagram.com/cobanrondomalang/?hl=en'
+      }
+    ];
+
+    function openModal(id) {
+      const place = placesMalang.find(p => p.id === id);
+      if (place) {
+        document.getElementById('modalTitle').textContent = place.title;
+        document.getElementById('modalDescription').textContent = place.description;
+        document.getElementById('modalShortDescription').textContent = place.shortDescription;
+        document.getElementById('modalMapsLink').setAttribute('href', place.mapsLink);
+        document.getElementById('modalMapsLink').textContent = "Lihat di Peta";
+        document.getElementById('modalRating').textContent = `Rating: ${place.rating} ⭐`;
+        document.getElementById('modalTicketLink').setAttribute('href', place.ticketLink);
+        document.getElementById('modalTicketLink').textContent = "Masuk ke Website";
+        document.getElementById('modalImage').setAttribute('src', place.imgSrc);
+        document.getElementById('modalImage').classList.remove('w-48', 'h-48');
+        document.getElementById('modalImage').classList.add('w-60', 'h-60');
+        document.getElementById('modal').classList.remove('hidden');
+      }
+    }
+
+    function closeModal() {
+      document.getElementById('modal').classList.add('hidden');
+      document.getElementById('modalImage').classList.remove('w-60', 'h-60');
+      document.getElementById('modalImage').classList.add('w-48', 'h-48');
+    }
+  </script>
+</head>
+
+<body class="font-sans bg-gray-100">
+  <!-- Header -->
+  <header class="bg-blue-600 text-white fixed w-full z-10">
+    <div class="container mx-auto px-4">
+      <nav class="flex items-center justify-between py-4">
+        <a href="index.html" class="text-2xl font-bold">EastJavaVentura</a>
+        <ul class="flex space-x-6">
+          <li><a href="index.html" class="hover:text-blue-200 transition-colors">Kembali ke Beranda</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="pt-16">
+    <section class="py-16 bg-white">
+      <div class="container mx-auto px-4">
+        <h1 class="text-4xl font-bold mb-8 text-center">5 Wisata Terbaik di Malang</h1>
+
+        <!-- Gallery Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <!-- Loop through places -->
+          <script>
+            placesMalang.forEach(place => {
+              document.write(`
+                <div class="bg-white rounded-lg shadow-md overflow-hidden flex flex-col items-center">
+                  <img src="${place.imgSrc}" alt="${place.title}" class="w-full h-48 object-cover">
+                  <div class="p-4 text-center">
+                    <h3 class="text-xl font-semibold mb-2">${place.title}</h3>
+                    <p class="text-gray-600">${place.shortDescription}</p>
+                    <div class="mt-4 flex justify-center items-center">
+                      <button onclick="openModal('${place.id}')" class="bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-700 transition-all">Lihat Detail</button>
+                    </div>
+                  </div>
+                </div>
+              `);
+            });
+          </script>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Modal Template -->
+  <div id="modal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden">
+    <div class="bg-white p-6 rounded-lg shadow-lg w-96">
+      <img id="modalImage" class="w-48 h-48 object-cover mx-auto mb-4 rounded" src="" alt="Modal Image">
+      <h2 id="modalTitle" class="text-xl font-semibold mb-2"></h2>
+      <p id="modalShortDescription" class="text-gray-600 mb-2"></p>
+      <p id="modalDescription" class="text-gray-600 mb-4"></p>
+      <p id="modalRating" class="text-yellow-500 mb-2"></p>
+      <div class="flex justify-between mb-4">
+        <a id="modalMapsLink" href="#" target="_blank" class="bg-green-500 text-white py-2 px-4 rounded hover:bg-green-600 transition-all">Lihat di Peta</a>
+        <a id="modalTicketLink" href="#" target="_blank" class="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 transition-all">Masuk ke Website</a>
+      </div>
+      <div class="mt-4 flex justify-end">
+        <button onclick="closeModal()" class="bg-red-600 text-white py-2 px-4 rounded hover:bg-red-700 transition-all">Tutup</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="bg-blue-600 text-white py-4">
+    <div class="container mx-auto px-4 text-center">
+      <p>&copy; 2023 Jatim Travel. All rights reserved.</p>
+    </div>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="5 wisata terbaik di Batu, Jawa Timur. Jelajahi tempat-tempat wisata populer seperti Jatim Park 2, Taman Wisata Selecta, Eco Green Park, dan lainnya.">
+  <title>5 Wisata Terbaik di Batu - Jawa Timur</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+  </style>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Poppins', 'sans-serif'],
+          },
+        }
+      }
+    }
+
+    const placesBatu = [
+      {
+        id: 'modal1',
+        title: 'Jatim Park 2 (Batu Secret Zoo & Museum Satwa)',
+        shortDescription: 'Taman rekreasi dengan kebun binatang modern dan museum satwa.',
+        description: 'Jatim Park 2 adalah salah satu taman rekreasi paling populer di Batu. Terdiri dari Batu Secret Zoo, kebun binatang modern dengan berbagai satwa dari seluruh dunia, dan Museum Satwa yang menampilkan replika dan fosil hewan purba. Destinasi ini sangat cocok untuk wisata keluarga dan edukasi, karena menyediakan pengalaman interaktif dan menarik bagi pengunjung dari segala usia.',
+        imgSrc: 'Batu/img/jatim-park-2.jpg',
+        location: 'Jl. Oro-Oro Ombo No.9, Temas, Kec. Batu, Kota Batu, Jawa Timur',
+        mapsLink: 'https://goo.gl/maps/exampleJatimPark2',
+        rating: '4.6',
+        ticketLink: 'https://www.jtp.id/jatimpark2'
+      },
+      {
+        id: 'modal2',
+        title: 'Taman Wisata Selecta',
+        shortDescription: 'Taman rekreasi dengan keindahan bunga dan pemandangan pegunungan.',
+        description: 'Taman Wisata Selecta adalah taman rekreasi yang terkenal dengan keindahan taman bunga yang luas, kolam renang, dan pemandangan alam pegunungan yang menyejukkan. Tempat ini cocok untuk rekreasi keluarga karena menyediakan berbagai wahana seperti sepeda air, taman bermain anak, serta taman bunga yang sangat indah untuk dijelajahi dan berfoto.',
+        imgSrc: 'Batu/img/taman-selecta.jpg',
+        location: 'Jl. Raya Selecta No. 1, Tulungrejo, Kec. Bumiaji, Kota Batu, Jawa Timur',
+        mapsLink: 'https://goo.gl/maps/exampleSelecta',
+        rating: '4.5',
+        ticketLink: 'https://selecta.id/'
+      },
+      {
+        id: 'modal3',
+        title: 'Eco Green Park',
+        shortDescription: 'Taman edukasi ramah lingkungan dengan berbagai wahana.',
+        description: 'Eco Green Park adalah taman edukasi yang fokus pada konsep ramah lingkungan. Tempat ini menawarkan berbagai wahana dan atraksi seperti kebun binatang mini, kebun vertikal, hingga taman daur ulang yang mengajarkan pentingnya menjaga alam. Taman ini dirancang untuk mengedukasi pengunjung tentang lingkungan sambil menikmati suasana rekreasi yang menyenangkan.',
+        imgSrc: 'Batu/img/eco-green-park.jpg',
+        location: 'Jl. Oro-Oro Ombo No.9A, Kec. Batu, Kota Batu, Jawa Timur',
+        mapsLink: 'https://goo.gl/maps/exampleEcoGreenPark',
+        rating: '4.4',
+        ticketLink: 'https://www.jtp.id/ecogreenpark'
+      },
+      {
+        id: 'modal4',
+        title: 'Pemandian Air Panas Cangar',
+        shortDescription: 'Kolam air panas alami di tengah hutan tropis.',
+        description: 'Pemandian Air Panas Cangar adalah tempat yang menawarkan kolam air panas alami yang berasal dari pegunungan. Dikelilingi oleh hutan tropis, lokasi ini cocok untuk bersantai sambil menikmati udara sejuk. Pengunjung bisa menikmati mandi air panas alami yang dipercaya memiliki khasiat untuk relaksasi dan kesehatan kulit.',
+        imgSrc: 'Batu/img/cangar-hot-spring.jpg',
+        location: 'Desa Sumber Brantas, Kec. Bumiaji, Kota Batu, Jawa Timur',
+        mapsLink: 'https://goo.gl/maps/exampleCangar',
+        rating: '4.3',
+        ticketLink: 'https://batukota.go.id/wisata/pemandian-air-panas-cangar'
+      },
+      {
+        id: 'modal5',
+        title: 'Kusuma Agrowisata',
+        shortDescription: 'Wisata agro dengan pengalaman petik buah dan wahana rekreasi.',
+        description: 'Kusuma Agrowisata adalah destinasi wisata agro yang memungkinkan pengunjung untuk menikmati berbagai kegiatan petik buah seperti apel, stroberi, jeruk, dan jambu. Selain itu, terdapat juga berbagai wahana rekreasi seperti kolam renang, permainan outbond, dan restoran dengan pemandangan taman. Tempat ini cocok bagi wisatawan yang ingin merasakan langsung pengalaman agrowisata khas Kota Batu.',
+        imgSrc: 'Batu/img/kusuma-agrowisata.jpg',
+        location: 'Jl. Abdul Gani Atas, Ngaglik, Kec. Batu, Kota Batu, Jawa Timur',
+        mapsLink: 'https://goo.gl/maps/exampleKusumaAgrowisata',
+        rating: '4.5',
+        ticketLink: 'https://kusuma-agrowisata.com/'
+      }
+    ];
+
+    function openModal(id) {
+      const place = placesBatu.find(p => p.id === id);
+      if (place) {
+        document.getElementById('modalTitle').textContent = place.title;
+        document.getElementById('modalDescription').textContent = place.description;
+        document.getElementById('modalShortDescription').textContent = place.shortDescription;
+        document.getElementById('modalMapsLink').setAttribute('href', place.mapsLink);
+        document.getElementById('modalMapsLink').textContent = "Lihat di Peta";
+        document.getElementById('modalRating').textContent = `Rating: ${place.rating} ⭐`;
+        document.getElementById('modalTicketLink').setAttribute('href', place.ticketLink);
+        document.getElementById('modalTicketLink').textContent = "Masuk ke Website";
+        document.getElementById('modalImage').setAttribute('src', place.imgSrc);
+        document.getElementById('modalImage').classList.remove('w-48', 'h-48');
+        document.getElementById('modalImage').classList.add('w-60', 'h-60');
+        document.getElementById('modal').classList.remove('hidden');
+      }
+    }
+
+    function closeModal() {
+      document.getElementById('modal').classList.add('hidden');
+      document.getElementById('modalImage').classList.remove('w-60', 'h-60');
+      document.getElementById('modalImage').classList.add('w-48', 'h-48');
+    }
+  </script>
+</head>
+
+<body class="font-sans bg-gray-100">
+  <!-- Header -->
+  <header class="bg-blue-600 text-white fixed w-full z-10">
+    <div class="container mx-auto px-4">
+      <nav class="flex items-center justify-between py-4">
+        <a href="index.html" class="text-2xl font-bold">EastJavaVentura</a>
+        <ul class="flex space-x-6">
+          <li><a href="index.html" class="hover:text-blue-200 transition-colors">Kembali ke Beranda</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="pt-16">
+    <section class="py-16 bg-white">
+      <div class="container mx-auto px-4">
+        <h1 class="text-4xl font-bold mb-8 text-center">5 Wisata Terbaik di Batu</h1>
+
+        <!-- Gallery Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <!-- Loop through places -->
+          <script>
+            placesBatu.forEach(place => {
+              document.write(`
+                <div class="bg-white rounded-lg shadow-md overflow-hidden flex flex-col items-center">
+                  <img src="${place.imgSrc}" alt="${place.title}" class="w-full h-48 object-cover">
+                  <div class="p-4 text-center">
+                    <h3 class="text-xl font-semibold mb-2">${place.title}</h3>
+                    <p class="text-gray-600">${place.shortDescription}</p>
+                    <div class="mt-4 flex justify-center items-center">
+                      <button onclick="openModal('${place.id}')" class="bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-700 transition-all">Lihat Detail</button>
+                    </div>
+                  </div>
+                </div>
+              `);
+            });
+          </script>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Modal Template -->
+  <div id="modal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden">
+    <div class="bg-white p-6 rounded-lg shadow-lg w-[800px] flex">
+      <div class="w-1/2 pr-4">
+        <img id="modalImage" class="w-full h-[300px] object-cover rounded" src="" alt="Modal Image">
+      </div>
+      <div class="w-1/2 flex flex-col">
+        <h2 id="modalTitle" class="text-2xl font-semibold mb-2"></h2>
+        <p id="modalShortDescription" class="text-gray-600 mb-2"></p>
+        <p id="modalDescription" class="text-gray-600 mb-4 flex-grow overflow-y-auto"></p>
+        <p id="modalRating" class="text-yellow-500 mb-2"></p>
+        <div class="flex justify-between mb-4">
+          <a id="modalMapsLink" href="#" target="_blank" class="bg-green-500 text-white py-2 px-4 rounded hover:bg-green-600 transition-all">Lihat di Peta</a>
+          <a id="modalTicketLink" href="#" target="_blank" class="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 transition-all">Masuk ke Website</a>
+        </div>
+        <div class="flex justify-end">
+          <button onclick="closeModal()" class="bg-red-600 text-white py-2 px-4 rounded hover:bg-red-700 transition-all">Tutup</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="bg-blue-600 text-white py-4">
+    <div class="container mx-auto px-4 text-center">
+      <p>&copy; 2023 Jatim Travel. All rights reserved.</p>
+    </div>
+  </footer>
+</body>
+</html>
